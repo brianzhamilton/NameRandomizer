@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: slategray;
+    color: #334;
+    font-family: Helvetica, Arial, sans-serif;
+}
+#wrapper {
+    width: 80%;
+    margin: 0 10% 0 10%;
+    background-color: lightsteelblue;
+}
+header {
+    padding: 2%;
+}
+main {
+    padding: 2%;
+}
+footer {
+    padding: 2%;
+}

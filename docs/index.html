@@ -14,8 +14,21 @@
         </header>
         <main>
             <h2>Random Name:</h2>
-            <h1 id="randResult">&lt;&lt;NAME&gt;&gt;</h1>
-            <button id="generate">Generate Name</button>
+            <h1 id="randResult" hidden>&lt;&lt;NAME&gt;&gt;</h1><br>
+            <form action="Randomize.js">
+                <input type="text" id="nameInput" placeholder="John" pattern="/^[A-Za-z0-9]$/">
+                <input type="button" name="inputName" id="inputName" value="Add Name"><br>
+                <input type="number" name="numToWin" id="numToWin" min="1" value="1"><br>
+                <input type="checkbox" id="removePrevWins">
+                <label for="removePrevWins">Remove Previous Winners from List</label><br>
+                <input type="button" id="selectWinner" value="Select Winner">
+                <input type="reset" value="Reset"><br>
+            </form>
+            <div id="listWrapper">
+                <form id="listOfNames">
+                </form>
+                <button id="removeButton" hidden>Remove Selected Names from List</button>
+            </div><br>
         </main>
         <footer>
             Last updated: <script>document.write(document.lastModified);</script>

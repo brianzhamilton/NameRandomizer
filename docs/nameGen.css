@@ -1,4 +1,7 @@
+/* Universal Colors and Formatting */
 * { box-sizing: border-box; }
+
+/* Top Level Elements */
 body {
     padding: 0;
     margin: 0;
@@ -6,18 +9,98 @@ body {
     background-color: slategray;
     color: #334;
     font-family: Helvetica, Arial, sans-serif;
+    font-size: large;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
 }
 #wrapper {
-    width: 80%;
-    margin: 0 10% 0 10%;
     background-color: lightsteelblue;
+    box-shadow: 1px 3px 10px #223;
 }
 header {
     padding: 2%;
+    background-color: #20344E;
+    color: #F1F6FD;
 }
 main {
     padding: 2%;
 }
 footer {
     padding: 2%;
+    background-color: #647FA3;
+    color: #F1F6FD;
+    font-size: small;
+    font-style: italic;
+}
+
+/* Low Level Elements */
+input {
+    margin: 1%;
+    padding: 1%;
+    font-size: medium;
+}
+label {
+    margin: 1%;
+    padding: 1%;
+    font-size: medium;
+}
+
+.namesOnList {
+    clear: both;
+    text-align: center;
+}
+.checkboxesOnList {
+    margin-right: 2px;
+    padding-right: 2px;
+}
+.labelsOnList {
+    margin-left: 2px;
+    padding-left: 2px;
+}
+
+#errorText {
+    color: #922;
+}
+
+#removePrevWins {
+    margin-right: 0;
+    padding-right: 0;
+}
+#rmvWinsCBox {
+    margin-left: 0;
+    padding-left: 0;
+}
+#listWrapper {
+    margin: 1%;
+    padding: 1%;
+}
+#removeButton {
+    clear: both;
+    margin: 1%;
+    padding: 1%;
+}
+
+/* Mobile Formatting */
+@media only screen and (max-width:500px) {
+    #wrapper {
+        width: 90%;
+        margin: 0 5% 0 5%;
+    }
+    .namesOnList {
+        width: 34%;
+        margin-left: 33%;
+        margin-right: 33%;
+    }
+}
+/* Desktop PC Formatting */
+@media only screen and (min-width: 501px) {
+    #wrapper {
+        width: 80%;
+        margin: 0 10% 0 10%;
+    }
+    .namesOnList {
+        width: 34%;
+        margin-left: 33%;
+        margin-right: 33%;
+    }
 }

@@ -2,8 +2,11 @@
 var nameInput = document.getElementById("nameInput");
 var inputName = document.getElementById("inputName");
 var numToWin = document.getElementById("numToWin");
+var errorText = document.getElementById("errorText");
 var removePrevWins = document.getElementById("removePrevWins");
+var randResultHeader = document.getElementById("randResultHeader");
 var randResult = document.getElementById("randResult");
+var paragraph = document.getElementById("textComment");
 var selectWinner = document.getElementById("selectWinner");
 var listOfNames = document.getElementById("listOfNames");
 var removeButton = document.getElementById("removeButton");
@@ -17,7 +20,7 @@ var nameExpression = /^[A-Za-z0-9]+$/
 
 //function for removing names that are checked on the list
 function removeNames() {
-    for (let i = 0; i < names.length; i++) {
+    for (let i = names.length - 1; i > -1; i--) {
         const cbox = document.getElementById("cbox" + i);
         if (cbox.checked) {
             names.splice(i, 1);
@@ -37,19 +40,21 @@ function updateNameList() {
 
     // create updated list
     for (let i = 0; i < names.length; i++) {
+        nameDiv = document.createElement("div");
+        nameDiv.setAttribute("class", "namesOnList");
+        listOfNames.appendChild(nameDiv);
+        
         const cboxName = document.createElement("input");
         cboxName.setAttribute("type", "checkbox");
         cboxName.setAttribute("id", "cbox" + i);
         cboxName.setAttribute("class", "checkboxesOnList");
-        cboxName.setAttribute("class", "namesOnList");
-        listOfNames.appendChild(cboxName);
+        nameDiv.appendChild(cboxName);
 
         const txtName = document.createElement("label");
         txtName.setAttribute("for", "cbox" + i);
         txtName.setAttribute("class", "labelsOnList");
-        txtName.setAttribute("class", "namesOnList");
         txtName.innerText = names[i];
-        listOfNames.appendChild(txtName);
+        nameDiv.appendChild(txtName);
     }
     
     // displays or hides the Remove Names button, 
@@ -74,31 +79,55 @@ function addName() {
 }
 
 // produces the random winner results
-// !!!!!!!!!! IMPORTANT: MUST MODIFY MULTIPLE WINNERS TO NOT BE DUPLICATES
 function randomize() {
     // empties previous winner results
     randResult.innerHTML = "";
+    winners = [];
 
     // selects winner(s)
     if (names[0] !== "" && numToWin.value <= names.length) {
         for (let i = 0; i < numToWin.value; i++) {
             const winningNumber = Math.floor(Math.random() * (names.length));
-            winners[i] = names[winningNumber];
-
-            randResult.innerHTML += winners[i] + "!</br>";
+            
+            // if there's multiple winners, this makes sure
+            // the same person isn't selected multiple times
+            if (winners.indexOf(names[winningNumber]) < 0) {
+                winners[i] = names[winningNumber];
+                randResult.innerHTML += winners[i] + "!</br>";
+            }
+            else {
+                i--;
+            }
         }
-    }
 
-    if (removePrevWins.checked) {
-        for (let i = 0; i < winners.length; i++) {
-            var index = names.indexOf(winners[i]);
-            names.splice(index, 1);
+        if (removePrevWins.checked) {
+            for (let i = 0; i < winners.length; i++) {
+                var index = names.indexOf(winners[i]);
+                names.splice(index, 1);
+            }
+            updateNameList();
         }
-        updateNameList();
+    
+        // Changes the plurality of the language if 
+        // there's more than one winner
+        if (numToWin > 1) {
+            randResultHeader.innerText = "The winners are..."
+        }
+        else {
+            randResultHeader.innerText = "The winner is..."
+        }
+    
+        // Reveals the result HTML element
+        errorText.hidden = true;
+        randResultHeader.hidden = false;
+        randResult.hidden = false;
     }
-
-    // Reveals the result HTML element
-    randResult.hidden = false;
+    else if (numToWin.value > names.length) {
+        errorText.innerText = "ERROR: number of winners cannot excede number of names on the list.";
+        errorText.hidden = false;
+        randResultHeader.hidden = true;
+        randResult.hidden = true;
+    }
 }
 
 // create event listeners

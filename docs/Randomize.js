@@ -21,10 +21,10 @@ var nameExpression = /^[A-Za-z0-9]+$/
 
 // reset button
 function reset() {
-    var yesOrNo = confirm("Are you sure?\nClicking \"OK\" will reset the entire list.");
+    var yesOrNo = confirm("Are you sure?\n\nClicking \"OK\" will reset the entire list.");
     if (yesOrNo) {
         names = [];
-        removeNames();
+        updateNameList();
     }
 }
 

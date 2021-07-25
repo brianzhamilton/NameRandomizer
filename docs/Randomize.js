@@ -8,6 +8,7 @@ var randResultHeader = document.getElementById("randResultHeader");
 var randResult = document.getElementById("randResult");
 var paragraph = document.getElementById("textComment");
 var selectWinner = document.getElementById("selectWinner");
+var btnReset = document.getElementById("btnReset");
 var listOfNames = document.getElementById("listOfNames");
 var removeButton = document.getElementById("removeButton");
 
@@ -17,6 +18,15 @@ var winners = [];
 
 // regular expression for input validation
 var nameExpression = /^[A-Za-z0-9]+$/
+
+// reset button
+function reset() {
+    var yesOrNo = confirm("Are you sure? Clicking \"OK\" will reset the entire list.");
+    if (yesOrNo) {
+        names = [];
+        removeNames();
+    }
+}
 
 //function for removing names that are checked on the list
 function removeNames() {
@@ -136,11 +146,13 @@ function createEventListeners() {
         selectWinner.addEventListener("click", randomize, false);
         inputName.addEventListener("click", addName, false);
         removeButton.addEventListener("click", removeNames, false);
+        btnReset.addEventListener("click", reset, false);
     }
     else if (button.attachEvent) {
         selectWinner.attachEvent("onclick", randomize);
         inputName.attachEvent("onclick", addName);
-        removeButton.attachEvent("click", removeNames);
+        removeButton.attachEvent("onclick", removeNames);
+        btnReset.attachEvent("onclick", reset);
     }
 }
 

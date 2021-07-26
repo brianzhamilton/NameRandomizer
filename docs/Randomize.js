@@ -30,6 +30,10 @@ var nameExpression = /^[A-Za-z0-9]+$/
 function reset() {
     var yesOrNo = confirm("Are you sure?\nClicking \"OK\" will reset the entire list.");
     if (yesOrNo) {
+        errorText.hidden = true;
+        randResultHeader.hidden = true;
+        randResult.hidden = true;
+        
         names = [];
         updateNameList();
     }

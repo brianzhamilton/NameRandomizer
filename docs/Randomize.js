@@ -1,3 +1,10 @@
+/*      Filename:   Randomize.js
+ *      Author:     Brian Hamilton, Yousef Algaradi, Sara Richey
+ *      Date:       07/26/2021
+ *      Summary:    JavaScript file for inputting and selecting
+ *                  names at random from a list
+ */
+
 // HTML elements assigned to JS variables
 var nameInput = document.getElementById("nameInput");
 var inputName = document.getElementById("inputName");
@@ -81,8 +88,6 @@ function updateNameList() {
 function addName() {
     if (nameExpression.test(nameInput.value)) {
         names.push(nameInput.value);
-        console.log(names[names.length-1]);
-        console.log(names.length);
         nameInput.value = "";
     }
     updateNameList();

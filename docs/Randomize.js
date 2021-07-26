@@ -1,5 +1,5 @@
 /*      Filename:   Randomize.js
- *      Authors:     Brian, Yousef, Sara
+ *      Authors:    Brian, Yousef, Sara
  *      Date:       07/26/2021
  *      Summary:    JavaScript file for inputting and selecting
  *                  names at random from a list
